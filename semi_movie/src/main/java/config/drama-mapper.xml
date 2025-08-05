@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DramaMapper">
+	
+	<select id="selectBySearch">
+  	select *
+  	from drama
+  	where  1=1
+  	<if test="search != null and search.trim() != ''"> 
+  	and (name LIKE '%' || #{search} || '%'
+  	or overview LIKE '%' || #{search} || '%')
+  	</if>
+  	</select>
+  
+  	<insert id="insertSearchResult">
+  	insert into drama( name, overview, poster_path, first_air_date)
+  	values(#{name}, #{overview}, #{poster_path}, #{first_air_date}) 
+  	</insert>
+  	
+  	<select id="selectByPoster">
+  	select *
+  	from drama
+  	where poster_path = #{poster_path}
+  	</select>
+  	
+  	<select id="selectAll">
+  	select *
+  	from drama
+  	</select>
+  	
+</mapper>

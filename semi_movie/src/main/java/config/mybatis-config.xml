@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+        <property name="username" value="C##JOE"/>
+        <property name="password" value="123456"/>
+
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="config/userInfo-mapper.xml"/>
+    <mapper resource="config/admin-mapper.xml"/>
+    <mapper resource="config/commentary-mapper.xml"/>
+    <mapper resource="config/drama-mapper.xml"/>
+    <mapper resource="config/webtoon-mapper.xml"/>
+    <mapper resource="config/media-mapper.xml"/>
+    <mapper resource="config/announcement-mapper.xml"/>
+  </mappers>
+</configuration>

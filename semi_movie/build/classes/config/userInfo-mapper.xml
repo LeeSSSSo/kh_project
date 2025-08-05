@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserInfoMapper">
+
+  <select id="login">
+    select id, passwd 
+    from user_info
+    where id = #{id}
+    and passwd = #{passwd}
+  </select>
+  
+  <insert id="insertMember">
+  	insert into user_info(id, passwd, name, nickNm, ph_num)
+  	values (#{id}, #{passwd}, #{name}, #{nickNm}, #{ph_num})
+  </insert>
+  
+  <select id="findID">
+  	select *
+  	from user_info
+  	where name = #{name}
+  	and ph_num = #{ph_num}
+  </select>
+  
+  <select id="findPasswd">
+  	select *
+  	from user_info
+  	where id = #{id}
+  	and ph_num = #{ph_num}
+  </select>
+  
+  <update id="updatePasswd">
+  	update user_info
+  	set passwd = #{passwd}
+  	where id = #{id}
+  	and ph_num = #{ph_num}
+  </update>
+  
+  <select id="selectBySearch">
+  	select *
+  	from user_info
+  	where 1=1
+  	<if test="search != null and search.trim() != ''">
+    and (name LIKE '%' || #{search} || '%'
+  	or nickNm LIKE '%' || #{search} || '%'
+  	or id LIKE '%' || #{search} || '%'
+  	or ph_num LIKE '%' || #{search} || '%')
+  	</if>
+  </select>
+  
+  <select id="selectNicknmById">
+  	select nickNm
+  	from user_info
+  	where id = #{id}
+  	and passwd = #{passwd}
+  </select>
+  
+</mapper>
