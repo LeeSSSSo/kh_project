@@ -1,0 +1,118 @@
+1.오류 이유
+
+   select *
+    from (
+    select * from commentary
+    where score_c = #{score_c} and criticism = #{criticism} 
+    order by c_num desc
+    )
+    where rownum <= 6;
+
+마이바티스 에서는 저런 것들 
+<![CDATA[ ]]> 감싸야함  ----> 이거 이미 오빠가 해둔거 봣는데 다시 바겼나;; 
+
+덮어 씌워진듯 같은 파일 커밋푸쉬해서그런듯 깃사용을 잘못함...ㅋㅋㅋㅋㅋㅋㅋ 갈깨
+
+2.오류 이유
+mybatis-config.xml 에 
+
+    <mapper resource="config/admin-mapper.xml"/> 는
+admin-mapper.xml 이렇게 설정 되어있는데 
+파일은 admin_mapper.xml 이렇게 되어있음 네이밍오류 
+
+
+3. window -> Preferenc -> XML (Wild Web Developer) 
+Download external resources like referenced DTD, XSD
+
+가 체크가 안되어있었음 
+
+체크해야함
+
+디비 유저네임 패스워드 바꿀것 
+
+끝
+
+자기야 위
+
+
+
+------------------------------------
+로그인페이지에서 관리자누르면 admin.jsp 연결시키게하기
+
+에러 mybatis-config.xml
+
+바뀌기전
+  <property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
+        <property name="username" value="JOE"/>
+        <property name="password" value="123456"/>
+
+바뀐후
+   <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+        <property name="username" value="C##JOE"/>
+        <property name="password" value="123456"/>
+
+이게 틀림 
+
+F12 -> Network 는 개발자가 필수로 확인해야하는부분 
+왜냐면 네트워크 통신으로 API 호출을하니 200 이안뜨면 저기에 오류가 나옴 왜 500 에러인지 
+필히 습관을 들일것!
+
+오류사항
+
+컨트롤러가 만들어졌잖아용 그래서  adminLoginForm 이게 url 임 
+
+adminLoginForm.do 로 접속하면 연결이된 하지만 빈화면이 나옴 왜? 
+
+views 폴더 안에 
+AdminLoginFormController
+ModelAndView 로 설정한 join_member.jsp 이게 없으니
+
+join_member.jsp views 폴더 안으로 이동
+
+ 
+===========================================================================
+예시
+
+
+jsp 는 무조건 위치가 views 폴더 하위일것 
+
+views 폴더하위로 xml 설정 해놨기 때문 
+
+ex)  mypage.jsp 를  myPage 로하고싶으면 
+
+AdminLoginFormController 와 똑같이 
+
+MypageFormController 만들고 
+
+똑같이 
+
+view = new ModelAndView("mypage.jsp", false);
+
+
+HandlerMapping.java
+
+switch 문에 
+
+case"myPage"
+
+controller = new MypageFormController();
+
+break;
+
+이렇게하면 
+
+URL 은
+
+http://localhost:8888/movie/myPage.do
+
+으로 설정됌 오케이?
+
+
+
+관리자 로그인하면 http://localhost:8888/movie/admin_login.do 
+
+ 로그인되면 http://localhost:8888/movie/admin.jsp 
+
+
+
+
